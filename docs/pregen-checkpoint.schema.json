@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Map PreView pregeneration checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "jobFingerprint": {
+      "type": "object",
+      "properties": {
+        "hex": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "hex"
+      ],
+      "additionalProperties": false
+    },
+    "cursorOffset": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "completedChunks": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "failedAttempts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "elapsedNanos": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "pendingChunks": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "x": {
+            "type": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "z": {
+            "type": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "x",
+          "z"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "jobFingerprint",
+    "cursorOffset",
+    "completedChunks",
+    "failedAttempts",
+    "elapsedNanos",
+    "pendingChunks"
+  ]
+}

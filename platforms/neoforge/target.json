@@ -1,0 +1,20 @@
+{
+  "loader": "neoforge",
+  "status": "prepared",
+  "repository": "https://maven.neoforged.net/releases/",
+  "coordinate": "net.neoforged:neoforge:{neoforge}",
+  "legacy_1_20_1_coordinate": "net.neoforged:forge:{neoforge}",
+  "build_plugin": "net.neoforged.gradle.userdev",
+  "mappings": "official",
+  "bootstrap_package": "io.github.playroomproject.mappreview.neoforge",
+  "metadata": "META-INF/neoforge.mods.toml",
+  "legacy_metadata_through": "1.20.4",
+  "events": {
+    "client_screen": "ScreenEvent.Init.Post",
+    "server_start": "ServerStartedEvent",
+    "server_tick": "TickEvent.ServerTickEvent.END (through 1.20.4); ServerTickEvent.Post (1.20.5+)",
+    "server_stop": "ServerStoppingEvent",
+    "player_join": "PlayerEvent.PlayerLoggedInEvent",
+    "commands": "RegisterCommandsEvent"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "loader": "quilt",
+  "status": "prepared",
+  "repository": "https://maven.quiltmc.org/repository/release/",
+  "coordinate": "org.quiltmc:quilt-loader:{quilt_loader}",
+  "build_plugin": "org.quiltmc.loom",
+  "mappings": "yarn",
+  "bootstrap_package": "io.github.playroomproject.mappreview.quilt",
+  "metadata": "quilt.mod.json",
+  "events": {
+    "common_entrypoint": "org.quiltmc.qsl.base.api.entrypoint.ModInitializer",
+    "client_entrypoint": "org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer",
+    "lifecycle": "Select and pin QSL/QFAPI for the exact Minecraft version before compiling event bindings"
+  }
+}

@@ -1,0 +1,96 @@
+name: Map PreView CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write # Gives access to create branches, push code and tags
+  pull-requests: write # Should create Pull-Request
+
+concurrency:
+  group: map-preview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  base:
+    name: Shared base / Java ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['17', '21']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Verify, test and assemble shared libraries
+        run: ./gradlew --no-daemon --stacktrace -Ploader=none check assemble
+      - name: Verify architecture and runtime naming
+        run: python3 scripts/check_architecture.py
+      - name: Preserve test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-preview-tests-java-${{ matrix.java }}
+          path: |
+            **/build/test-results/test/*.xml
+            **/build/reports/tests/test/
+          retention-days: 14
+      - name: Preserve foundation libraries
+        if: matrix.java == '17'
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-preview-foundation-libraries
+          path: '**/build/libs/*.jar'
+          if-no-files-found: error
+          retention-days: 14
+  fabric:
+    name: Fabric / Minecraft ${{ matrix.minecraft }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        minecraft: ['1.20', '1.20.1', '1.20.2', '1.20.3', '1.20.4', '1.20.5', '1.20.6']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build, check native parity and exercise the Minecraft server
+        run: ./gradlew --no-daemon --stacktrace -Porg.gradle.java.installations.fromEnv=JAVA_HOME_17_X64,JAVA_HOME_21_X64 -PminecraftVersion=${{ matrix.minecraft }} -PgameTests check assemble :fabric:runGameTest
+      - name: Verify remapping, dependencies and runtime metadata
+        run: python3 scripts/verify_fabric_jar.py ${{ matrix.minecraft }}
+      - name: Preserve native test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-preview-tests-fabric-${{ matrix.minecraft }}
+          path: |
+            build/fabric/${{ matrix.minecraft }}/test-results/
+            build/fabric/${{ matrix.minecraft }}/reports/tests/
+            build/fabric/${{ matrix.minecraft }}/gametest-results.xml
+            platforms/fabric/run/${{ matrix.minecraft }}/gametest/logs/latest.log
+          retention-days: 14
+      - name: Preserve installable mod
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-preview-fabric-${{ matrix.minecraft }}
+          path: |
+            build/fabric/${{ matrix.minecraft }}/libs/map-preview-fabric-${{ matrix.minecraft }}-*.jar
+            !build/fabric/${{ matrix.minecraft }}/libs/*-sources.jar
+            !build/fabric/${{ matrix.minecraft }}/libs/*-dev.jar
+            !build/fabric/${{ matrix.minecraft }}/libs/*-dev-shadow.jar
+            !build/fabric/${{ matrix.minecraft }}/libs/*-config-internal.jar
+          if-no-files-found: error
+          retention-days: 14

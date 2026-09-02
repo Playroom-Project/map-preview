@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "package": "io.github.playroomproject.mappreview.minecraft.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": ["CreateWorldScreenInvoker"],
+  "mixins": [],
+  "injectors": {"defaultRequire": 1}
+}

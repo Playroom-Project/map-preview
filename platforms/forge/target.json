@@ -1,0 +1,18 @@
+{
+  "loader": "forge",
+  "status": "prepared",
+  "repository": "https://maven.minecraftforge.net/",
+  "coordinate": "net.minecraftforge:forge:{minecraft}-{forge}",
+  "build_plugin": "net.minecraftforge.gradle",
+  "mappings": "official",
+  "bootstrap_package": "io.github.playroomproject.mappreview.forge",
+  "metadata": "META-INF/mods.toml",
+  "events": {
+    "client_screen": "ScreenEvent.Init.Post",
+    "server_start": "ServerStartedEvent",
+    "server_tick": "TickEvent.ServerTickEvent.END",
+    "server_stop": "ServerStoppingEvent",
+    "player_join": "PlayerEvent.PlayerLoggedInEvent",
+    "commands": "RegisterCommandsEvent"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "map_preview",
+  "version": "${version}",
+  "name": "Map PreView",
+  "description": "Interactive world previews using the selected Minecraft generator, with bounded background sampling and server-owned pregeneration.",
+  "authors": ["Playroom Project"],
+  "contact": {"sources": "https://github.com/Playroom-Project/map-preview", "issues": "https://github.com/Playroom-Project/map-preview/issues"},
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["io.github.playroomproject.mappreview.fabric.MapPreViewFabric"],
+    "client": ["io.github.playroomproject.mappreview.fabric.MapPreViewFabricClient"]
+  },
+  "mixins": ["map_preview.mixins.json"],
+  "depends": {"fabricloader": ">=${loader}", "fabric-api": ">=${fabric_api}", "minecraft": "${minecraft}", "java": ">=${java}"}
+}

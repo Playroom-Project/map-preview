@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "map_preview_gametest",
+  "version": "1.0.0",
+  "name": "Map PreView native server tests",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-gametest": ["io.github.playroomproject.mappreview.fabric.NativePregenGameTest"]
+  },
+  "depends": {"map_preview": "*", "fabric-gametest-api-v1": "*"}
+}

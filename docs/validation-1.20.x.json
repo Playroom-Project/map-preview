@@ -1,0 +1,180 @@
+{
+  "validated_on": "2026-09-02",
+  "mod_version": "0.3.0-alpha.1",
+  "branch": "1.20.x",
+  "fabric_loader": "0.16.14",
+  "scope": "Vanilla Fabric; hardware-specific and third-party modpack compatibility are not established.",
+  "shared_tests": [
+    {
+      "java": 17,
+      "passed": 84,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "java": 21,
+      "passed": 84,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "targets": [
+    {
+      "minecraft": "1.20",
+      "game_java": 17,
+      "fabric_api": "0.83.0+1.20",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20-0.3.0-alpha.1.jar",
+      "sha256": "c3f20bc4143825934d58b78f7abbc28d5719e84c22d935ac41412a677d30378b"
+    },
+    {
+      "minecraft": "1.20.1",
+      "game_java": 17,
+      "fabric_api": "0.92.6+1.20.1",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.1-0.3.0-alpha.1.jar",
+      "sha256": "488205289b0db1ba531562e39e4a94679f59da8adf957e5fd42a2f49fef80336"
+    },
+    {
+      "minecraft": "1.20.2",
+      "game_java": 17,
+      "fabric_api": "0.91.6+1.20.2",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.2-0.3.0-alpha.1.jar",
+      "sha256": "a0809a6d3c34e6b043466d9df302f85bcae7dd28cf2fd3b19368efad72389079"
+    },
+    {
+      "minecraft": "1.20.3",
+      "game_java": 17,
+      "fabric_api": "0.91.1+1.20.3",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.3-0.3.0-alpha.1.jar",
+      "sha256": "27333152571db45d59491417080c4a92f8ff6d385d7768a2198cdc151e240002"
+    },
+    {
+      "minecraft": "1.20.4",
+      "game_java": 17,
+      "fabric_api": "0.97.3+1.20.4",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.4-0.3.0-alpha.1.jar",
+      "sha256": "0a69a3f1bf40bf3ed5b89be236917504690013ebaa44b6deeee61f2a5d5bfc41"
+    },
+    {
+      "minecraft": "1.20.5",
+      "game_java": 21,
+      "fabric_api": "0.97.8+1.20.5",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.5-0.3.0-alpha.1.jar",
+      "sha256": "16ac07a97998dae5c937db2aeba899b89c34acda7ef3b66441c9f1dc3a4fe2e4"
+    },
+    {
+      "minecraft": "1.20.6",
+      "game_java": 21,
+      "fabric_api": "0.100.8+1.20.6",
+      "native_junit_passed": 11,
+      "native_server_gametest": "passed",
+      "packaged_client": "passed",
+      "client_checks": [
+        "world-editor button",
+        "sharp biome tiles",
+        "seed replacement",
+        "pan and zoom",
+        "height layer",
+        "rapid layer changes",
+        "three dimensions",
+        "expected cancellation hidden",
+        "use seed and reopen"
+      ],
+      "artifact": "map-preview-fabric-1.20.6-0.3.0-alpha.1.jar",
+      "sha256": "7fca1d1e99e640c34958bb581b1b739bd4017c95ab21c80f3fec49fb3577125a"
+    }
+  ],
+  "integrated_client": {
+    "minecraft": "1.20.6",
+    "result": "passed",
+    "created_from_preview": true,
+    "native_saved_seed": 123456789,
+    "integrated_server_controls": true,
+    "processed_chunks": 25,
+    "maximum_in_flight": 2,
+    "checkpoint_persisted": true
+  }
+}

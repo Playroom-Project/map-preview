@@ -1,0 +1,14 @@
+{
+  "branch": "1.20.x",
+  "fabric_loader": "0.16.14",
+  "quilt_loader": "0.28.1",
+  "targets": [
+    {"minecraft": "1.20", "java": 17, "yarn": "1.20+build.1", "fabric_api": "0.83.0+1.20", "api_family": "legacy", "forge": "46.0.14", "neoforge": null},
+    {"minecraft": "1.20.1", "java": 17, "yarn": "1.20.1+build.10", "fabric_api": "0.92.6+1.20.1", "api_family": "legacy", "forge": "47.4.0", "neoforge": "1.20.1-47.1.106"},
+    {"minecraft": "1.20.2", "java": 17, "yarn": "1.20.2+build.4", "fabric_api": "0.91.6+1.20.2", "api_family": "modern", "forge": "48.1.0", "neoforge": "20.2.93"},
+    {"minecraft": "1.20.3", "java": 17, "yarn": "1.20.3+build.1", "fabric_api": "0.91.1+1.20.3", "api_family": "modern", "forge": "49.0.2", "neoforge": "20.3.8-beta"},
+    {"minecraft": "1.20.4", "java": 17, "yarn": "1.20.4+build.3", "fabric_api": "0.97.3+1.20.4", "api_family": "modern", "forge": "49.2.0", "neoforge": "20.4.251"},
+    {"minecraft": "1.20.5", "java": 21, "yarn": "1.20.5+build.1", "fabric_api": "0.97.8+1.20.5", "api_family": "components", "forge": null, "neoforge": "20.5.21-beta"},
+    {"minecraft": "1.20.6", "java": 21, "yarn": "1.20.6+build.3", "fabric_api": "0.100.8+1.20.6", "api_family": "components", "forge": "50.2.0", "neoforge": "20.6.141"}
+  ]
+}
