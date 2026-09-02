@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Playroom-Project/map-preview/blob/main/docs/config.schema.json",
+  "title": "Map PreView configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1,
+      "description": "Configuration format version. Unknown versions are rejected before writing."
+    },
+    "name": {
+      "const": "Map PreView",
+      "description": "Runtime identity."
+    },
+    "performanceMode": {
+      "enum": [
+        "ECO",
+        "BALANCED",
+        "FAST",
+        "MAX"
+      ],
+      "default": "BALANCED",
+      "description": "Automatic CPU policy. Unknown generator backends still default to serial execution."
+    },
+    "workers": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 64,
+      "default": 0,
+      "description": "Zero selects the automatic policy. Positive values set the worker ceiling."
+    },
+    "maximumOutstandingTasks": {
+      "type": "integer",
+      "minimum": 64,
+      "maximum": 16384,
+      "default": 256,
+      "description": "Hard count limit including running, queued and obsolete work still draining."
+    },
+    "cacheMiB": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 32768,
+      "default": 256,
+      "description": "Accounted CPU cache budget. Zero disables admission; runtime clamps to one quarter of current maximum heap."
+    },
+    "tileSize": {
+      "enum": [
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "default": 256,
+      "description": "Base tile world span in blocks. Distant zoom scales the span and sample step together."
+    },
+    "lodSteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024
+        ]
+      },
+      "uniqueItems": true,
+      "default": [
+        32,
+        16,
+        8,
+        4,
+        1
+      ],
+      "description": "Strictly descending powers of two no larger than tileSize, enforced by Java validation."
+    },
+    "prefetchRings": {
+      "enum": [
+        0,
+        1
+      ],
+      "default": 1,
+      "description": "At most one surrounding ring, sampled only at the coarsest resolution."
+    },
+    "maximumViewportTiles": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16384,
+      "default": 4096,
+      "description": "Maximum spatial tiles in a planned viewport including prefetch. Each visible tile may have several LOD passes."
+    },
+    "uploadsPerFrame": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256,
+      "default": 8,
+      "description": "Maximum tile uploads per render frame, enforced by the native client adapter."
+    },
+    "uploadQueueMiB": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1024,
+      "default": 16,
+      "description": "Byte budget passed to the CPU-to-render upload queue. GPU resources have a separate native budget."
+    },
+    "biomeColors": {
+      "type": "object",
+      "description": "Namespaced registry IDs mapped to opaque #RRGGBB colors. Numeric registry IDs are never persisted.",
+      "propertyNames": {
+        "pattern": "^[a-z0-9_.-]+:[a-z0-9/._-]+$",
+        "maxLength": 512
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "maxProperties": 65536
+    },
+    "biomeTagColors": {
+      "type": "object",
+      "description": "Namespaced registry IDs mapped to opaque #RRGGBB colors. Numeric registry IDs are never persisted.",
+      "propertyNames": {
+        "pattern": "^[a-z0-9_.-]+:[a-z0-9/._-]+$",
+        "maxLength": 512
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "maxProperties": 4096
+    },
+    "disabledIntegrations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_.-]+:[a-z0-9/._-]+$",
+        "maxLength": 512
+      },
+      "description": "Provider IDs that loader bootstrap must omit. Absence of an optional mod never loads its implementation classes."
+    },
+    "hardware": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Last observed JVM/GPU profile. Automatic budgets use the current machine at runtime.",
+      "properties": {
+        "logicalProcessors": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Logical processors exposed to the JVM."
+        },
+        "maximumHeapBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum JVM heap in bytes."
+        },
+        "gpuVendor": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Vendor from the version renderer, or unknown before a safe GPU probe."
+        },
+        "gpuRenderer": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Renderer from the version renderer, or unknown. This is not proof of compute support."
+        }
+      },
+      "required": [
+        "logicalProcessors",
+        "maximumHeapBytes",
+        "gpuVendor",
+        "gpuRenderer"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "name",
+    "performanceMode",
+    "workers",
+    "maximumOutstandingTasks",
+    "cacheMiB",
+    "tileSize",
+    "lodSteps",
+    "prefetchRings",
+    "maximumViewportTiles",
+    "uploadsPerFrame",
+    "uploadQueueMiB",
+    "biomeColors",
+    "biomeTagColors",
+    "disabledIntegrations",
+    "hardware"
+  ]
+}

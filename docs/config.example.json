@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "name": "Map PreView",
+  "performanceMode": "BALANCED",
+  "workers": 0,
+  "maximumOutstandingTasks": 256,
+  "cacheMiB": 256,
+  "tileSize": 256,
+  "lodSteps": [
+    32,
+    16,
+    8,
+    4,
+    1
+  ],
+  "prefetchRings": 1,
+  "maximumViewportTiles": 4096,
+  "uploadsPerFrame": 8,
+  "uploadQueueMiB": 16,
+  "biomeColors": {
+    "minecraft:plains": "#7FBF55"
+  },
+  "biomeTagColors": {},
+  "disabledIntegrations": [],
+  "hardware": {
+    "logicalProcessors": 8,
+    "maximumHeapBytes": 4294967296,
+    "gpuVendor": "unknown",
+    "gpuRenderer": "unknown"
+  }
+}
