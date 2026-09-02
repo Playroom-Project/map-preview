@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # Gives access to create branches, push code and tags
+  pull-requests: write # Should create Pull-Request
 
 concurrency:
   group: map-preview-${{ github.workflow }}-${{ github.ref }}
